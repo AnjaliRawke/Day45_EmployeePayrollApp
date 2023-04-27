@@ -71,9 +71,16 @@ class EmployeePayrollData{
     {
         return this._startDate;
     }
-    set startDate(startDate)
-    {
-        this._startDate=startDate;
+    set startDate(startDate) {
+        var today = new Date();
+        const one_month_ago = new Date(today.setDate(today.getDate()-30));
+        today = new Date();
+        if(today < startDate || startDate < one_month_ago) {
+            throw 'Start date is invalid!';
+        }
+        else {
+            this._startDate = startDate;
+        }
     }
 
     //method
